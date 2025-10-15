@@ -1,0 +1,485 @@
+:root {
+  --bg: #0b1d26;
+  --fg: #f2f7f5;
+  --accent: #00c896;
+  --accent-dark: #009f75;
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-strong: rgba(255, 255, 255, 0.12);
+  --danger: #ff6b6b;
+  --warning: #ffa500;
+  --positive: #21c55d;
+  --muted: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(160deg, #081018 0%, #0b1d26 60%, #134552 100%);
+  color: var(--fg);
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 1.5rem;
+  gap: 1rem;
+}
+
+.header {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.subtitle {
+  color: var(--muted);
+}
+
+.card {
+  background: var(--surface);
+  border-radius: 1.5rem;
+  padding: 1.25rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.highlight {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.status {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.button {
+  border: none;
+  border-radius: 1rem;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--fg);
+  background: var(--surface-strong);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.button span {
+  font-size: 1.5rem;
+}
+
+.button:hover,
+.button:focus {
+  transform: translateY(-3px);
+  background: var(--surface-strong);
+}
+
+.button.primary {
+  background: var(--accent);
+  color: #012022;
+}
+
+.button[disabled],
+.button.disabled {
+  opacity: 0.5;
+}
+
+.button.primary:hover,
+.button.primary:focus {
+  background: var(--accent-dark);
+}
+
+.button.secondary {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.button.tile {
+  min-height: 120px;
+  justify-content: center;
+}
+
+.button.positive {
+  background: rgba(33, 197, 93, 0.2);
+}
+
+.button.warning {
+  background: rgba(255, 165, 0, 0.2);
+}
+
+.button.danger {
+  background: rgba(255, 107, 107, 0.2);
+}
+
+.icon-button {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.input-group span {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.input-group input {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  border-radius: 1rem;
+  padding: 0.8rem 1rem;
+  color: var(--fg);
+}
+
+.input-group small {
+  color: var(--muted);
+}
+
+.error-message {
+  color: var(--danger);
+  min-height: 1.25rem;
+}
+
+.footer {
+  text-align: center;
+  color: var(--muted);
+}
+
+.screen {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.screen.active {
+  display: flex;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-header h2 {
+  margin: 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.list-item .meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.badge.available {
+  background: rgba(0, 200, 150, 0.2);
+  color: #8afdd5;
+}
+
+.badge.unavailable {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.mock-map {
+  margin-top: 1rem;
+  background: radial-gradient(circle at 30% 30%, rgba(0, 200, 150, 0.3), transparent),
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.15), transparent),
+    linear-gradient(120deg, rgba(11, 29, 38, 0.9), rgba(3, 70, 90, 0.6));
+  border-radius: 1.5rem;
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mock-map::after {
+  content: "Rota simulada";
+  position: absolute;
+  bottom: 10px;
+  right: 16px;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.participant-icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+}
+
+.participant-icon.guide {
+  background: #ffd166;
+  color: #0b1d26;
+}
+
+.participant-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.participant-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.8rem 1rem;
+  border-radius: 1rem;
+}
+
+.participant-item .status-indicator {
+  font-size: 1.2rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.5rem;
+  border-radius: 999px;
+}
+
+.tab {
+  flex: 1;
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem;
+  background: transparent;
+  color: var(--fg);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tab.active {
+  background: rgba(0, 200, 150, 0.15);
+  color: #9fffe0;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.switch input[type="checkbox"] {
+  width: 40px;
+  height: 20px;
+}
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.alert-box {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 1rem;
+  min-height: 60px;
+}
+
+.summary {
+  margin-top: 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.chat-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 70vh;
+}
+
+.chat-history {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.message {
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  max-width: 80%;
+}
+
+.message.user {
+  background: rgba(0, 200, 150, 0.3);
+  align-self: flex-end;
+}
+
+.message.bot {
+  background: rgba(255, 255, 255, 0.12);
+  align-self: flex-start;
+}
+
+.chat-input {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chat-input input {
+  flex: 1;
+  border-radius: 999px;
+  border: none;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--fg);
+}
+
+.alert-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 999;
+}
+
+.alert-content {
+  background: var(--surface);
+  padding: 2rem;
+  border-radius: 1.5rem;
+  max-width: 320px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+}
+
+.weather-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.weather-card .value {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.mini-chart {
+  height: 120px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.mini-chart .bar {
+  background: linear-gradient(180deg, rgba(0, 200, 150, 0.8), rgba(11, 29, 38, 0));
+  border-radius: 0.75rem 0.75rem 0 0;
+  align-self: end;
+}
+
+.mini-chart .bar:nth-child(odd) {
+  background: linear-gradient(180deg, rgba(159, 255, 224, 0.8), rgba(11, 29, 38, 0));
+}
+
+@media (min-width: 720px) {
+  .app {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+}
