@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal do Cliente - Trekking Aventura</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Container principal com rolagem vertical para mobile -->
+  <main id="app" class="app">
+    <!-- Tela de login -->
+    <section id="loginScreen" class="screen active">
+      <header class="header">
+        <h1>Portal do Cliente</h1>
+        <p class="subtitle">Integra Trekking Experience</p>
+      </header>
+      <form id="loginForm" class="card">
+        <h2>Bem-vindo(a)!</h2>
+        <p class="info">Use o código de reserva enviado por e-mail.</p>
+        <label class="input-group">
+          <span>Código de Reserva</span>
+          <input type="text" id="reservationCode" placeholder="Ex: TREK-1234" required />
+        </label>
+        <label class="input-group">
+          <span>Senha</span>
+          <input type="password" id="password" placeholder="Sua senha" required />
+        </label>
+        <button type="submit" class="button primary">Entrar</button>
+        <p id="loginError" class="error-message" role="alert"></p>
+      </form>
+      <footer class="footer">
+        <small>Prototipo funcional - Dados simulados</small>
+      </footer>
+    </section>
+
+    <!-- Painel Principal -->
+    <section id="dashboard" class="screen">
+      <header class="toolbar">
+        <div>
+          <h2 id="clientName">Olá, Explorador(a)</h2>
+          <p id="routeDate">Data do roteiro: --</p>
+        </div>
+        <button id="logoutBtn" class="icon-button" aria-label="Sair">
+          <span class="icon">⎋</span>
+        </button>
+      </header>
+
+      <section class="card highlight">
+        <div>
+          <p class="label">Status do evento</p>
+          <p id="eventStatus" class="status">--</p>
+        </div>
+        <div>
+          <p class="label">Participantes</p>
+          <p id="participantCount" class="status">0</p>
+        </div>
+      </section>
+
+      <section class="grid">
+        <button class="button tile" data-target="documents">
+          <span>📄</span>
+          Documentos
+        </button>
+        <button class="button tile" data-target="boarding">
+          <span>🚌</span>
+          Embarque
+        </button>
+        <button class="button tile" data-target="trail">
+          <span>🥾</span>
+          MeSegTrail
+        </button>
+        <button class="button tile" data-target="weather">
+          <span>🌤️</span>
+          MeSeg Clima
+        </button>
+        <button class="button tile" data-target="generalInfo">
+          <span>ℹ️</span>
+          Informações Gerais
+        </button>
+        <button class="button tile" data-target="chat">
+          <span>💬</span>
+          Mensagens
+        </button>
+      </section>
+    </section>
+
+    <!-- Documentos -->
+    <section id="documents" class="screen">
+      <header class="section-header">
+        <button class="icon-button back" data-target="dashboard">←</button>
+        <h2>Documentos</h2>
+      </header>
+      <div id="documentList" class="list"></div>
+    </section>
+
+    <!-- Informações de Embarque -->
+    <section id="boarding" class="screen">
+      <header class="section-header">
+        <button class="icon-button back" data-target="dashboard">←</button>
+        <h2>Detalhes de Embarque</h2>
+      </header>
+      <article id="boardingInfo" class="card">
+        <!-- Conteúdo dinâmico -->
+      </article>
+    </section>
+
+    <!-- Informações Gerais -->
+    <section id="generalInfo" class="screen">
+      <header class="section-header">
+        <button class="icon-button back" data-target="dashboard">←</button>
+        <h2>Informações Gerais</h2>
+      </header>
+      <article id="generalInfoContent" class="card"></article>
+    </section>
+
+    <!-- Módulo MeSegTrail -->
+    <section id="trail" class="screen">
+      <header class="section-header">
+        <button class="icon-button back" data-target="dashboard">←</button>
+        <h2>MeSegTrail</h2>
+      </header>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="mainGuide">Guia Principal</button>
+        <button class="tab" data-tab="auxGuide">Guias Auxiliares</button>
+        <button class="tab" data-tab="participants">Participantes</button>
+      </div>
+
+      <div class="tab-content active" id="mainGuide" role="tabpanel">
+        <section class="card control-panel">
+          <h3>Painel de Controle</h3>
+          <div class="control-grid">
+            <label class="input-group">
+              <span>Rota GPX/KML</span>
+              <input type="file" accept=".gpx,.kml" disabled />
+              <small>Mock: carregamento automático</small>
+            </label>
+            <label class="input-group">
+              <span>Hora de início</span>
+              <input type="time" id="startTime" />
+            </label>
+            <label class="input-group">
+              <span>Hora de término</span>
+              <input type="time" id="endTime" />
+            </label>
+            <label class="input-group">
+              <span>Distância de alerta (m)</span>
+              <input type="number" id="alertDistance" value="200" />
+            </label>
+            <label class="switch">
+              <input type="checkbox" id="trackingToggle" checked />
+              <span>Rastreamento ativo</span>
+            </label>
+          </div>
+          <button id="startActivity" class="button primary">Iniciar atividade</button>
+        </section>
+        <section class="card map-area">
+          <h3>Tela de Navegação</h3>
+          <div id="trailMap" class="mock-map" role="img" aria-label="Mapa da trilha"></div>
+          <ul id="connectedParticipants" class="participant-list"></ul>
+          <div class="actions">
+            <button id="markOccurrence" class="button secondary">Marcar ocorrência</button>
+            <button id="sendAlert" class="button secondary">Enviar alerta geral</button>
+          </div>
+        </section>
+      </div>
+
+      <div class="tab-content" id="auxGuide" role="tabpanel">
+        <section class="card">
+          <h3>Visão das Guias Auxiliares</h3>
+          <p>Todos os participantes conectados:</p>
+          <ul id="auxParticipants" class="participant-list"></ul>
+          <button class="button secondary" id="takeControl">Assumir controle temporário</button>
+        </section>
+      </div>
+
+      <div class="tab-content" id="participants" role="tabpanel">
+        <section class="card">
+          <h3>Visão do Participante</h3>
+          <div class="mock-map participant-map" role="img" aria-label="Mapa da trilha do participante"></div>
+          <div class="quick-actions">
+            <button class="button positive" data-status="ok">🟢 Estou bem</button>
+            <button class="button warning" data-status="tired">🟠 Estou cansado</button>
+            <button class="button danger" data-status="help">🔴 Preciso de ajuda</button>
+          </div>
+          <div id="participantAlerts" class="alert-box"></div>
+          <div id="activitySummary" class="summary"></div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Módulo MeSeg Clima -->
+    <section id="weather" class="screen">
+      <header class="section-header">
+        <button class="icon-button back" data-target="dashboard">←</button>
+        <h2>MeSeg Clima</h2>
+      </header>
+      <article id="weatherContent" class="card"></article>
+    </section>
+
+    <!-- Chat IA -->
+    <section id="chat" class="screen">
+      <header class="section-header">
+        <button class="icon-button back" data-target="dashboard">←</button>
+        <h2>Mensagens</h2>
+      </header>
+      <article class="card chat-box">
+        <div id="chatHistory" class="chat-history" aria-live="polite"></div>
+        <form id="chatForm" class="chat-input">
+          <input type="text" id="chatMessage" placeholder="Digite sua mensagem" required />
+          <button type="submit" class="button primary">Enviar</button>
+        </form>
+      </article>
+    </section>
+  </main>
+
+  <div id="alertOverlay" class="alert-overlay" hidden>
+    <div class="alert-content">
+      <p id="alertMessage"></p>
+      <button id="closeAlert" class="button primary">Ok</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
